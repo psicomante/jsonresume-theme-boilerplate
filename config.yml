@@ -1,12 +1,17 @@
-resume:
+preset:
   default:
-    file: resume.json
+    files: resume.json
     folder: ../resume-json
     theme: shorter
-  slick:
+  # pdf default
+  pdf:
+    theme: shorter
+  # html default theme
+  html:
+    theme: elegant
+  # simple theme, useful for html
+  simple:
     theme: slick
-themes:
-  pdf: shorter
-  html: elegant
-  md: markdown
-  html_alt: timeline
+  #
+  cool:
+    theme: timeline
