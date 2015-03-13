@@ -1,7 +1,7 @@
 preset:
   default:
-    files: resume.json
-    folder: ../resume-json
+    file: resume.json
+    folder: ../../resume-json
     theme: shorter
   # pdf default
   pdf:
@@ -15,3 +15,7 @@ preset:
   #
   cool:
     theme: timeline
+  # elegant & minimal
+  # with print function/css
+  srt:
+    theme: srt

@@ -26,15 +26,33 @@ module.exports = function(grunt) {
     defaults: defaults,
 
     copy: {
-      main: {
+      resume: {
         src: '<%= defaults.folder %>/<%= defaults.file %>',
         dest: 'resume.json',
       },
     },
-
+    watch: {
+      resume: {
+        files: ['<%= defaults.folder %>/*.{json,jpg}'],
+        tasks: ['copy:resume', 'shell:index'],
+        options: {
+          event: ['added', 'changed'],
+          livereload: true
+        }
+      }
+    },
     shell: {
       serve: {
-        command: 'resume serve'
+        command: 'resume serve',
+        // options: {
+        //   stderr: true,
+        //   execOptions: {
+        //     cwd: 'tasks'
+        //   }
+        // }
+      },
+      index: {
+        command: 'node export index.html'
       },
       pdf: {
         command: 'resume export -t <%= defaults.theme %> resume.pdf'
@@ -46,13 +64,31 @@ module.exports = function(grunt) {
         command: 'resume export -t <%= defaults.theme %> resume.md'
       },
     },
+    connect: {
+      options: {
+        port: 9000,
+        // change this to '0.0.0.0' to access the server from outside
+        hostname: 'localhost'
+      },
+      dist: {
+        options: {
+          open: false,
+        }
+      },
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-shell');
+  // Load the plugin that watches file changes
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  // lite web server
+  grunt.loadNpmTasks('grunt-contrib-connect');
+
+
 
   // copy resume.json and resume.jpg, serve the current theme (calls index.js)
-  grunt.registerTask('serve', ['copy:main', 'shell:serve']);
+  grunt.registerTask('serve', ['copy:resume', 'shell:index','connect:dist', 'watch:resume']);
 
   // create a resume.pdf
   grunt.registerTask('pdf', 'export a pdf based on resume.json', function(theme){
