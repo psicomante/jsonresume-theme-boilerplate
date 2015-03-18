@@ -15,7 +15,10 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-shell": "^1.1.2",
     "handlebars": "^2.0.0-alpha.4",
-    "lodash": "^3.5.0"
+    "lodash": "^3.5.0",
+    "gravatar": "^1.0.6",
+    "mustache": "^0.8.2",
+    "tarball-extract": "0.0.3"
   },
   "devDependencies": {
     "connect-livereload": "^0.5.3"

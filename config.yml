@@ -19,3 +19,5 @@ preset:
   # with print function/css
   srt:
     theme: srt
+  nominaltech:
+    theme: nominaltech
